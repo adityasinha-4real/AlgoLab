@@ -14,15 +14,21 @@ import {
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import { useCallback, useEffect, useMemo, type MouseEvent } from 'react'
+import type { ExecutionStep } from '../../../core/engine'
 import type { Graph } from '../../../core/graph'
+import { getCurrentStep, useExecutionStore } from '../../state/executionStore'
 import { useGraphStore } from '../../state/graphStore'
+import { nodeStatus, pathEdgeIds } from './algorithmOverlay'
 import { GraphNodeView, type GraphNodeData } from './GraphNodeView'
 import { GraphEdgeView } from './GraphEdgeView'
 
 const nodeTypes = { graphNode: GraphNodeView }
 const edgeTypes = { graphEdge: GraphEdgeView }
 
-function toFlowNodes(graph: Graph): Node<GraphNodeData>[] {
+function toFlowNodes(
+  graph: Graph,
+  step: ExecutionStep | null,
+): Node<GraphNodeData>[] {
   return graph.nodes.map((n) => ({
     id: n.id,
     type: 'graphNode',
@@ -31,17 +37,26 @@ function toFlowNodes(graph: Graph): Node<GraphNodeData>[] {
       label: n.label,
       isStart: graph.startNodeId === n.id,
       isTarget: graph.targetNodeId === n.id,
+      status: nodeStatus(n.id, step),
     },
   }))
 }
 
-function toFlowEdges(graph: Graph): Edge[] {
+function toFlowEdges(graph: Graph, step: ExecutionStep | null): Edge[] {
+  const onPath = pathEdgeIds(graph, step)
   return graph.edges.map((e) => ({
     id: e.id,
     source: e.source,
     target: e.target,
     type: 'graphEdge',
-    data: { weight: e.weight },
+    data: {
+      weight: e.weight,
+      status: onPath.has(e.id)
+        ? 'path'
+        : step?.state.currentEdgeId === e.id
+          ? 'current'
+          : 'default',
+    },
     markerEnd: e.directed
       ? { type: MarkerType.ArrowClosed, color: 'var(--color-text-muted)' }
       : undefined,
@@ -59,8 +74,12 @@ function GraphCanvasInner() {
   const select = useGraphStore((s) => s.select)
   const { screenToFlowPosition } = useReactFlow()
 
-  const initialNodes = useMemo(() => toFlowNodes(graph), [graph])
-  const initialEdges = useMemo(() => toFlowEdges(graph), [graph])
+  const executionResult = useExecutionStore((s) => s.result)
+  const cursor = useExecutionStore((s) => s.cursor)
+  const step = getCurrentStep({ result: executionResult, cursor })
+
+  const initialNodes = useMemo(() => toFlowNodes(graph, step), [graph, step])
+  const initialEdges = useMemo(() => toFlowEdges(graph, step), [graph, step])
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
 

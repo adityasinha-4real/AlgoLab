@@ -1,5 +1,19 @@
 import type { Graph, GraphEdge, NodeId } from './types'
 
+/** Finds the edge connecting two nodes, honoring direction. Assumes at most
+ * one edge per ordered pair (the graph editor prevents duplicates). */
+export function findEdgeBetween(
+  graph: Graph,
+  a: NodeId,
+  b: NodeId,
+): GraphEdge | undefined {
+  return graph.edges.find(
+    (e) =>
+      (e.source === a && e.target === b) ||
+      (!e.directed && e.source === b && e.target === a),
+  )
+}
+
 export interface AdjacencyEntry {
   neighbor: NodeId
   edge: GraphEdge

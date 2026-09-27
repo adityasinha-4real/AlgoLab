@@ -16,7 +16,7 @@ function App() {
           AlgoLab
         </h1>
         <p className="text-xs text-text-muted">
-          Interactive algorithm laboratory — graph editor (M2)
+          Interactive algorithm laboratory — BFS &amp; DFS (M4)
         </p>
       </header>
 

@@ -1,10 +1,18 @@
 import type { ReactNode } from 'react'
+import { getAlgorithmMetadata } from '../../core/algorithms/metadata'
 import { useGraphStore } from '../state/graphStore'
 import { getCurrentStep, useExecutionStore } from '../state/executionStore'
 
 function labelFor(nodeIds: Record<string, string>, id: string | null): string {
   if (id === null) return '—'
   return nodeIds[id] ?? id
+}
+
+const FRONTIER_LABEL: Record<string, string> = {
+  queue: 'Frontier (Queue)',
+  stack: 'Frontier (Stack)',
+  'priority-queue': 'Frontier (Priority Queue)',
+  'relaxation-passes': 'Frontier',
 }
 
 export function StateInspectorPanel() {
@@ -31,12 +39,19 @@ export function StateInspectorPanel() {
   }
 
   const { state } = step
+  const frontierStructure = result
+    ? getAlgorithmMetadata(result.algorithmId).frontierStructure
+    : 'queue'
 
   return (
     <div className="flex flex-col gap-3 rounded-md border border-border bg-surface-1 p-4">
       <h2 className="text-sm font-semibold text-text-primary">
         State inspector
       </h2>
+
+      <p className="rounded border border-accent/40 bg-accent/10 px-2 py-1.5 text-xs text-accent">
+        {step.explanation}
+      </p>
 
       <Section title="Current">
         {labelFor(nodeLabelById, state.currentNodeId)}
@@ -49,7 +64,7 @@ export function StateInspectorPanel() {
           : '—'}
       </Section>
 
-      <Section title="Frontier">
+      <Section title={FRONTIER_LABEL[frontierStructure]}>
         {state.frontier.length > 0
           ? state.frontier.map((id) => nodeLabelById[id] ?? id).join(', ')
           : '—'}

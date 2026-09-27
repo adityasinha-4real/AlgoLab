@@ -16,6 +16,7 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     supportsNegativeWeights: false,
     guaranteesShortestPath: true,
     requiresHeuristic: false,
+    frontierStructure: 'queue',
   },
   dfs: {
     id: 'dfs',
@@ -27,6 +28,7 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     supportsNegativeWeights: false,
     guaranteesShortestPath: false,
     requiresHeuristic: false,
+    frontierStructure: 'stack',
   },
   dijkstra: {
     id: 'dijkstra',
@@ -38,6 +40,7 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     supportsNegativeWeights: false,
     guaranteesShortestPath: true,
     requiresHeuristic: false,
+    frontierStructure: 'priority-queue',
   },
   astar: {
     id: 'astar',
@@ -49,6 +52,7 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     supportsNegativeWeights: false,
     guaranteesShortestPath: true,
     requiresHeuristic: true,
+    frontierStructure: 'priority-queue',
   },
   'bellman-ford': {
     id: 'bellman-ford',
@@ -60,6 +64,7 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     supportsNegativeWeights: true,
     guaranteesShortestPath: true,
     requiresHeuristic: false,
+    frontierStructure: 'relaxation-passes',
   },
 }
 

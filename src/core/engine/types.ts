@@ -11,6 +11,8 @@ export interface AlgorithmMetadata {
   supportsNegativeWeights: boolean
   guaranteesShortestPath: boolean
   requiresHeuristic: boolean
+  /** What kind of structure `AlgorithmState.frontier` represents for this algorithm. */
+  frontierStructure: 'queue' | 'stack' | 'priority-queue' | 'relaxation-passes'
 }
 
 /**
