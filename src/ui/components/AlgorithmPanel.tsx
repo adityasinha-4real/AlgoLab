@@ -1,5 +1,8 @@
 import { useState } from 'react'
-import { listAlgorithmMetadata } from '../../core/algorithms/metadata'
+import {
+  getAlgorithmMetadata,
+  listAlgorithmMetadata,
+} from '../../core/algorithms/metadata'
 import { getAlgorithmRunner } from '../../core/algorithms/registry'
 import { validateGraph } from '../../core/graph'
 import { useAlgorithmStore } from '../state/algorithmStore'
@@ -19,6 +22,7 @@ export function AlgorithmPanel() {
   const runner = getAlgorithmRunner(selectedAlgorithmId)
   const validationErrors = validateGraph(graph)
   const canRun = Boolean(runner) && validationErrors.length === 0
+  const selectedMetadata = getAlgorithmMetadata(selectedAlgorithmId)
 
   const handleRun = () => {
     if (!runner) return
@@ -71,6 +75,29 @@ export function AlgorithmPanel() {
           )
         })}
       </ul>
+
+      <dl className="grid grid-cols-2 gap-x-2 gap-y-1 rounded border border-border bg-surface-2 px-3 py-2 text-xs">
+        <dt className="text-text-muted">Time complexity</dt>
+        <dd className="text-right text-text-primary">
+          {selectedMetadata.timeComplexity}
+        </dd>
+        <dt className="text-text-muted">Space complexity</dt>
+        <dd className="text-right text-text-primary">
+          {selectedMetadata.spaceComplexity}
+        </dd>
+        <dt className="text-text-muted">Negative weights</dt>
+        <dd className="text-right text-text-primary">
+          {selectedMetadata.supportsNegativeWeights
+            ? 'Supported'
+            : 'Not supported'}
+        </dd>
+        <dt className="text-text-muted">Shortest path</dt>
+        <dd className="text-right text-text-primary">
+          {selectedMetadata.guaranteesShortestPath
+            ? 'Guaranteed'
+            : 'Not guaranteed'}
+        </dd>
+      </dl>
 
       <button
         type="button"

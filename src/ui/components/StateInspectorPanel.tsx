@@ -53,6 +53,10 @@ export function StateInspectorPanel() {
         {step.explanation}
       </p>
 
+      {state.pass !== null && (
+        <Section title="Relaxation pass">{state.pass}</Section>
+      )}
+
       <Section title="Current">
         {labelFor(nodeLabelById, state.currentNodeId)}
         {state.currentEdgeId ? ` · edge ${state.currentEdgeId}` : ''}

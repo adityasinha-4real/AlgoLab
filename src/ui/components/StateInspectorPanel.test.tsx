@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { runAStar } from '../../core/algorithms/astar'
+import { runBellmanFord } from '../../core/algorithms/bellmanFord'
 import { GRAPH_PRESETS } from '../../core/graph/presets'
 import { createFixtureExecutionResult } from '../../test/fixtures'
 import { useExecutionStore } from '../state/executionStore'
@@ -67,5 +68,23 @@ describe('StateInspectorPanel', () => {
     render(<StateInspectorPanel />)
 
     expect(screen.queryByText('Heuristic (h) / f = g + h')).toBeNull()
+  })
+
+  it('shows the relaxation pass number for Bellman-Ford', () => {
+    const result = runBellmanFord(GRAPH_PRESETS['simple-path'].build())
+    useExecutionStore.getState().load(result)
+    useExecutionStore.getState().stepForward()
+
+    render(<StateInspectorPanel />)
+
+    expect(screen.getByText('Relaxation pass')).toBeInTheDocument()
+  })
+
+  it('omits the relaxation pass section for algorithms that do not use one', () => {
+    useExecutionStore.getState().load(createFixtureExecutionResult())
+
+    render(<StateInspectorPanel />)
+
+    expect(screen.queryByText('Relaxation pass')).toBeNull()
   })
 })

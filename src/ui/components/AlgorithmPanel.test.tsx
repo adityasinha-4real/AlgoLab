@@ -109,4 +109,20 @@ describe('AlgorithmPanel', () => {
     expect(result?.algorithmId).toBe('bellman-ford')
     expect(result?.steps[result.steps.length - 1].type).toBe('path-found')
   })
+
+  it('shows complexity and requirements for the selected algorithm, updating on selection', () => {
+    render(<AlgorithmPanel />)
+    const detailsFor = () =>
+      screen.getByText('Time complexity').closest('dl')!.textContent
+
+    expect(detailsFor()).toContain('Not supported')
+    expect(detailsFor()).toContain('Guaranteed')
+
+    fireEvent.click(
+      screen.getByText('Bellman-Ford Algorithm').closest('button')!,
+    )
+
+    expect(detailsFor()).toContain('O(V * E)')
+    expect(detailsFor()).toContain('Supported')
+  })
 })
