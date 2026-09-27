@@ -3,6 +3,15 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "description": "Interactive graph algorithm visualizer with step-by-step execution playback.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adityasinha-4real/AlgoLab.git"
+  },
+  "homepage": "https://github.com/adityasinha-4real/AlgoLab#readme",
+  "bugs": {
+    "url": "https://github.com/adityasinha-4real/AlgoLab/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
