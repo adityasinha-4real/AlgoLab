@@ -1,4 +1,5 @@
 import { AlgorithmPanel } from './ui/components/AlgorithmPanel'
+import { ComparisonPanel } from './ui/components/ComparisonPanel'
 import { ControlsBar } from './ui/components/ControlsBar'
 import { ErrorBanner } from './ui/components/graph/ErrorBanner'
 import { GraphCanvas } from './ui/components/graph/GraphCanvas'
@@ -87,6 +88,7 @@ function App() {
             <>
               <SelectionInspector />
               <AlgorithmPanel />
+              <ComparisonPanel />
             </>
           )}
           <PseudocodePanel />
