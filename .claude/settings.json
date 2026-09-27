@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run lint *)",
+      "Bash(npm run build *)",
+      "Bash(npx vitest run *)",
+      "Bash(npm run typecheck *)",
+      "Bash(npm test *)",
+      "Bash(git fetch *)",
+      "Bash(npm run format:check *)",
+      "Bash(npm view *)",
+      "Bash(docker info)",
+      "Bash(npx tsc --noEmit *)",
+      "Bash(npx eslint .)",
+      "Bash(gh --version)"
+    ]
+  }
+}
