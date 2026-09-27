@@ -1,14 +1,22 @@
-import { PSEUDOCODE_BY_ALGORITHM } from '../../core/pseudocode'
+import {
+  ASTAR_GRID_PSEUDOCODE,
+  PSEUDOCODE_BY_ALGORITHM,
+} from '../../core/pseudocode'
 import { useAlgorithmStore } from '../state/algorithmStore'
 import { getCurrentStep, useExecutionStore } from '../state/executionStore'
+import { useModeStore } from '../state/modeStore'
 
 export function PseudocodePanel() {
   const selectedAlgorithmId = useAlgorithmStore((s) => s.selectedAlgorithmId)
+  const mode = useModeStore((s) => s.mode)
   const result = useExecutionStore((s) => s.result)
   const cursor = useExecutionStore((s) => s.cursor)
   const step = getCurrentStep({ result, cursor })
 
-  const lines = PSEUDOCODE_BY_ALGORITHM[selectedAlgorithmId]
+  const lines =
+    mode === 'grid' && selectedAlgorithmId === 'astar'
+      ? ASTAR_GRID_PSEUDOCODE
+      : PSEUDOCODE_BY_ALGORITHM[selectedAlgorithmId]
   const highlightLine =
     result?.algorithmId === selectedAlgorithmId
       ? step?.pseudocodeLine

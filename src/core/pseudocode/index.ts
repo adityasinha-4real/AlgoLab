@@ -9,6 +9,7 @@ export { BFS_PSEUDOCODE } from './bfs'
 export { DFS_PSEUDOCODE } from './dfs'
 export { DIJKSTRA_PSEUDOCODE } from './dijkstra'
 export { ASTAR_PSEUDOCODE } from './astar'
+export { ASTAR_GRID_PSEUDOCODE } from './astarGrid'
 export { BELLMAN_FORD_PSEUDOCODE } from './bellmanFord'
 
 export const PSEUDOCODE_BY_ALGORITHM: Partial<
