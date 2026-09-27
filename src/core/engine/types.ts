@@ -38,6 +38,8 @@ export interface AlgorithmState {
   path: NodeId[] | null
   /** Relaxation pass number, used by Bellman-Ford; unused by other algorithms. */
   pass: number | null
+  /** Heuristic estimate h(n) per node id, used only by A*. f(n) = distances[n] + heuristics[n]. */
+  heuristics: Record<NodeId, number>
 }
 
 export type StepType =
@@ -88,5 +90,6 @@ export function createInitialAlgorithmState(): AlgorithmState {
     currentEdgeId: null,
     path: null,
     pass: null,
+    heuristics: {},
   }
 }

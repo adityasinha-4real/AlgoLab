@@ -59,5 +59,6 @@ function cloneState(state: AlgorithmState): AlgorithmState {
     currentEdgeId: state.currentEdgeId,
     path: state.path ? [...state.path] : null,
     pass: state.pass,
+    heuristics: { ...state.heuristics },
   }
 }

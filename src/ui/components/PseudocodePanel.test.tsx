@@ -42,7 +42,7 @@ describe('PseudocodePanel', () => {
   })
 
   it('shows a fallback message for algorithms without pseudocode yet', () => {
-    useAlgorithmStore.setState({ selectedAlgorithmId: 'astar' })
+    useAlgorithmStore.setState({ selectedAlgorithmId: 'bellman-ford' })
     render(<PseudocodePanel />)
     expect(screen.getByText(/isn't available yet/)).toBeInTheDocument()
   })

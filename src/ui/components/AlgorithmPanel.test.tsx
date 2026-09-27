@@ -25,7 +25,7 @@ describe('AlgorithmPanel', () => {
 
   it('marks unimplemented algorithms as "Coming soon"', () => {
     render(<AlgorithmPanel />)
-    expect(screen.getAllByText('Coming soon')).toHaveLength(2)
+    expect(screen.getAllByText('Coming soon')).toHaveLength(1)
   })
 
   it('disables Run when the graph fails validation', () => {
@@ -78,11 +78,31 @@ describe('AlgorithmPanel', () => {
     expect(useExecutionStore.getState().result).toBeNull()
   })
 
-  it('shows "Not implemented yet" and disables Run for A*', () => {
-    useGraphStore.getState().setGraph(GRAPH_PRESETS['simple-path'].build())
+  it('runs A* when A* is selected, finding the same path as Dijkstra', () => {
+    useGraphStore
+      .getState()
+      .setGraph(GRAPH_PRESETS['triangle-shortcut'].build())
     render(<AlgorithmPanel />)
 
     fireEvent.click(screen.getByText('A* Search').closest('button')!)
+    fireEvent.click(screen.getByRole('button', { name: /Run ASTAR/ }))
+
+    const { result } = useExecutionStore.getState()
+    expect(result?.algorithmId).toBe('astar')
+    expect(result?.steps[result.steps.length - 1].state.path).toEqual([
+      'a',
+      'b',
+      'c',
+    ])
+  })
+
+  it('shows "Not implemented yet" and disables Run for Bellman-Ford', () => {
+    useGraphStore.getState().setGraph(GRAPH_PRESETS['simple-path'].build())
+    render(<AlgorithmPanel />)
+
+    fireEvent.click(
+      screen.getByText('Bellman-Ford Algorithm').closest('button')!,
+    )
 
     expect(
       screen.getByRole('button', { name: 'Not implemented yet' }),

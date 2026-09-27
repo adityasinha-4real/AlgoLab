@@ -70,6 +70,7 @@ describe('StepRecorder', () => {
       currentEdgeId: null,
       path: null,
       pass: null,
+      heuristics: {},
     })
     recorder.record('visit', 1, 'noop', () => {})
     expect(recorder.getSteps()[0].state.visited).toEqual(['seed'])

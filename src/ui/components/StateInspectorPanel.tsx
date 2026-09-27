@@ -70,13 +70,24 @@ export function StateInspectorPanel() {
           : '—'}
       </Section>
 
-      <Section title="Distances">
+      <Section title="Distances (g)">
         {Object.keys(state.distances).length > 0
           ? Object.entries(state.distances)
               .map(([id, d]) => `${nodeLabelById[id] ?? id}: ${d}`)
               .join(', ')
           : '—'}
       </Section>
+
+      {Object.keys(state.heuristics).length > 0 && (
+        <Section title="Heuristic (h) / f = g + h">
+          {Object.keys(state.heuristics)
+            .map(
+              (id) =>
+                `${nodeLabelById[id] ?? id}: h=${state.heuristics[id].toFixed(1)}, f=${(state.distances[id] + state.heuristics[id]).toFixed(1)}`,
+            )
+            .join(', ')}
+        </Section>
+      )}
 
       <Section title="Parents">
         {Object.keys(state.parents).length > 0
