@@ -3,6 +3,7 @@ import type { Graph } from '../graph/types'
 import type { AlgorithmId } from '../engine/types'
 import { runBFS } from './bfs'
 import { runDFS } from './dfs'
+import { runDijkstra } from './dijkstra'
 
 export type AlgorithmRunner = (graph: Graph) => ExecutionResult
 
@@ -12,6 +13,7 @@ export const ALGORITHM_RUNNERS: Partial<Record<AlgorithmId, AlgorithmRunner>> =
   {
     bfs: runBFS,
     dfs: runDFS,
+    dijkstra: runDijkstra,
   }
 
 export function getAlgorithmRunner(

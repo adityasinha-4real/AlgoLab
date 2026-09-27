@@ -4,11 +4,14 @@ import { ErrorBanner } from './ui/components/graph/ErrorBanner'
 import { GraphCanvas } from './ui/components/graph/GraphCanvas'
 import { GraphToolbar } from './ui/components/graph/GraphToolbar'
 import { SelectionInspector } from './ui/components/graph/SelectionInspector'
+import { useResetExecutionOnGraphChange } from './ui/hooks/useResetExecutionOnGraphChange'
 import { PseudocodePanel } from './ui/components/PseudocodePanel'
 import { StateInspectorPanel } from './ui/components/StateInspectorPanel'
 import { Timeline } from './ui/components/Timeline'
 
 function App() {
+  useResetExecutionOnGraphChange()
+
   return (
     <div className="mx-auto flex h-screen max-w-[1600px] flex-col gap-3 p-4">
       <header className="flex items-center justify-between">

@@ -25,7 +25,7 @@ describe('AlgorithmPanel', () => {
 
   it('marks unimplemented algorithms as "Coming soon"', () => {
     render(<AlgorithmPanel />)
-    expect(screen.getAllByText('Coming soon')).toHaveLength(3)
+    expect(screen.getAllByText('Coming soon')).toHaveLength(2)
   })
 
   it('disables Run when the graph fails validation', () => {
@@ -57,11 +57,32 @@ describe('AlgorithmPanel', () => {
     expect(useExecutionStore.getState().result?.algorithmId).toBe('dfs')
   })
 
-  it('shows "Not implemented yet" and disables Run for Dijkstra', () => {
+  it('runs Dijkstra when Dijkstra is selected', () => {
     useGraphStore.getState().setGraph(GRAPH_PRESETS['simple-path'].build())
     render(<AlgorithmPanel />)
 
     fireEvent.click(screen.getByText("Dijkstra's Algorithm").closest('button')!)
+    fireEvent.click(screen.getByRole('button', { name: /Run DIJKSTRA/ }))
+
+    expect(useExecutionStore.getState().result?.algorithmId).toBe('dijkstra')
+  })
+
+  it('surfaces an error when running Dijkstra on a graph with negative weights', () => {
+    useGraphStore.getState().setGraph(GRAPH_PRESETS['negative-edge'].build())
+    render(<AlgorithmPanel />)
+
+    fireEvent.click(screen.getByText("Dijkstra's Algorithm").closest('button')!)
+    fireEvent.click(screen.getByRole('button', { name: /Run DIJKSTRA/ }))
+
+    expect(screen.getByText(/negative edge weights/)).toBeInTheDocument()
+    expect(useExecutionStore.getState().result).toBeNull()
+  })
+
+  it('shows "Not implemented yet" and disables Run for A*', () => {
+    useGraphStore.getState().setGraph(GRAPH_PRESETS['simple-path'].build())
+    render(<AlgorithmPanel />)
+
+    fireEvent.click(screen.getByText('A* Search').closest('button')!)
 
     expect(
       screen.getByRole('button', { name: 'Not implemented yet' }),
