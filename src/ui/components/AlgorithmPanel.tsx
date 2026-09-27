@@ -47,6 +47,7 @@ export function AlgorithmPanel() {
             <li key={algorithm.id}>
               <button
                 type="button"
+                aria-pressed={isSelected}
                 onClick={() => setSelectedAlgorithmId(algorithm.id)}
                 className={`w-full rounded border px-3 py-2 text-left ${
                   isSelected

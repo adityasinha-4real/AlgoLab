@@ -43,4 +43,43 @@ describe('Timeline', () => {
 
     expect(useExecutionStore.getState().cursor).toBe(2)
   })
+
+  it('is focusable and reachable by keyboard once a result is loaded, but not before', () => {
+    const { rerender } = render(<Timeline />)
+    expect(screen.getByRole('slider')).toHaveAttribute('tabIndex', '-1')
+
+    useExecutionStore.getState().load(createFixtureExecutionResult())
+    rerender(<Timeline />)
+    expect(screen.getByRole('slider')).toHaveAttribute('tabIndex', '0')
+  })
+
+  it('ArrowRight/ArrowLeft step forward/backward', () => {
+    useExecutionStore.getState().load(createFixtureExecutionResult())
+    render(<Timeline />)
+    const track = screen.getByRole('slider')
+
+    fireEvent.keyDown(track, { key: 'ArrowRight' })
+    expect(useExecutionStore.getState().cursor).toBe(1)
+
+    fireEvent.keyDown(track, { key: 'ArrowLeft' })
+    expect(useExecutionStore.getState().cursor).toBe(0)
+  })
+
+  it('Home/End jump to the boundaries', () => {
+    useExecutionStore.getState().load(createFixtureExecutionResult())
+    render(<Timeline />)
+    const track = screen.getByRole('slider')
+
+    fireEvent.keyDown(track, { key: 'End' })
+    expect(useExecutionStore.getState().cursor).toBe(2)
+
+    fireEvent.keyDown(track, { key: 'Home' })
+    expect(useExecutionStore.getState().cursor).toBe(0)
+  })
+
+  it('ignores keyboard input when no result is loaded', () => {
+    render(<Timeline />)
+    fireEvent.keyDown(screen.getByRole('slider'), { key: 'ArrowRight' })
+    expect(useExecutionStore.getState().cursor).toBe(0)
+  })
 })

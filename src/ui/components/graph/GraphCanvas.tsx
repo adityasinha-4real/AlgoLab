@@ -138,6 +138,8 @@ function GraphCanvasInner() {
 
   return (
     <div
+      role="application"
+      aria-label="Graph editor canvas"
       className={`h-full min-h-[420px] w-full overflow-hidden rounded-md border border-border bg-surface-1 ${
         isAddingNode ? 'cursor-crosshair' : ''
       }`}

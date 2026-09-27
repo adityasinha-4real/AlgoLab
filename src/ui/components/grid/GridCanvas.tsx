@@ -41,6 +41,8 @@ export function GridCanvas() {
 
   return (
     <div
+      role="application"
+      aria-label="Grid editor canvas"
       className="h-full min-h-[420px] w-full overflow-auto rounded-md border border-border bg-surface-1 p-3"
       onMouseUp={stopPainting}
       onMouseLeave={stopPainting}

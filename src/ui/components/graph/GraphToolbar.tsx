@@ -16,6 +16,7 @@ export function GraphToolbar() {
     <div className="flex flex-wrap items-center gap-2 rounded-md border border-border bg-surface-1 px-3 py-2 text-sm">
       <button
         type="button"
+        aria-pressed={isAddingNode}
         onClick={() => setIsAddingNode(!isAddingNode)}
         className={`rounded border px-2.5 py-1 ${
           isAddingNode

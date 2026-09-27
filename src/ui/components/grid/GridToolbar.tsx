@@ -37,6 +37,7 @@ export function GridToolbar() {
         <button
           key={m.id}
           type="button"
+          aria-pressed={paintMode === m.id}
           onClick={() => setPaintMode(m.id)}
           className={`rounded border px-2.5 py-1 ${
             paintMode === m.id

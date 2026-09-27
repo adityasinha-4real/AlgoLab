@@ -36,6 +36,7 @@ function ModeSwitch() {
         <button
           key={m}
           type="button"
+          aria-pressed={mode === m}
           onClick={() => switchTo(m)}
           className={`rounded px-3 py-1 capitalize ${
             mode === m ? 'bg-accent text-surface-0' : 'text-text-muted'

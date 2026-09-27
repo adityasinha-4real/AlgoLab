@@ -49,7 +49,11 @@ export function StateInspectorPanel() {
         State inspector
       </h2>
 
-      <p className="rounded border border-accent/40 bg-accent/10 px-2 py-1.5 text-xs text-accent">
+      <p
+        role="status"
+        aria-live="polite"
+        className="rounded border border-accent/40 bg-accent/10 px-2 py-1.5 text-xs text-accent"
+      >
         {step.explanation}
       </p>
 
