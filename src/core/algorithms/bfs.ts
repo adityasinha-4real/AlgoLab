@@ -116,6 +116,8 @@ export function runBFS(graph: Graph): ExecutionResult {
       `Queue exhausted without reaching ${labelOf(target)} - no path exists.`,
       (s) => {
         s.path = null
+        s.currentNodeId = null
+        s.currentEdgeId = null
       },
     )
   }

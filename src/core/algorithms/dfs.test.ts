@@ -33,6 +33,8 @@ describe('runDFS', () => {
     const last = result.steps[result.steps.length - 1]
     expect(last.type).toBe('no-path')
     expect(last.state.path).toBeNull()
+    expect(last.state.currentNodeId).toBeNull()
+    expect(last.state.currentEdgeId).toBeNull()
   })
 
   it('handles start === target as a trivial single-node path', () => {

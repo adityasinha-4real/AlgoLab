@@ -114,6 +114,8 @@ export function runDFS(graph: Graph): ExecutionResult {
       `Stack exhausted without reaching ${labelOf(target)} - no path exists.`,
       (s) => {
         s.path = null
+        s.currentNodeId = null
+        s.currentEdgeId = null
       },
     )
   }

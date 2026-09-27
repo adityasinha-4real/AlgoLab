@@ -23,9 +23,9 @@ describe('AlgorithmPanel', () => {
     expect(screen.getByText('Bellman-Ford Algorithm')).toBeInTheDocument()
   })
 
-  it('marks unimplemented algorithms as "Coming soon"', () => {
+  it('marks no algorithms as "Coming soon" now that all five are implemented', () => {
     render(<AlgorithmPanel />)
-    expect(screen.getAllByText('Coming soon')).toHaveLength(1)
+    expect(screen.queryByText('Coming soon')).toBeNull()
   })
 
   it('disables Run when the graph fails validation', () => {
@@ -96,16 +96,17 @@ describe('AlgorithmPanel', () => {
     ])
   })
 
-  it('shows "Not implemented yet" and disables Run for Bellman-Ford', () => {
-    useGraphStore.getState().setGraph(GRAPH_PRESETS['simple-path'].build())
+  it('runs Bellman-Ford when Bellman-Ford is selected, correctly handling a negative edge', () => {
+    useGraphStore.getState().setGraph(GRAPH_PRESETS['negative-edge'].build())
     render(<AlgorithmPanel />)
 
     fireEvent.click(
       screen.getByText('Bellman-Ford Algorithm').closest('button')!,
     )
+    fireEvent.click(screen.getByRole('button', { name: /Run BELLMAN-FORD/ }))
 
-    expect(
-      screen.getByRole('button', { name: 'Not implemented yet' }),
-    ).toBeDisabled()
+    const { result } = useExecutionStore.getState()
+    expect(result?.algorithmId).toBe('bellman-ford')
+    expect(result?.steps[result.steps.length - 1].type).toBe('path-found')
   })
 })

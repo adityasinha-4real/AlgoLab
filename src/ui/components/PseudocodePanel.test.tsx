@@ -41,8 +41,20 @@ describe('PseudocodePanel', () => {
     expect(document.querySelector('.bg-accent\\/20')).toBeNull()
   })
 
-  it('shows a fallback message for algorithms without pseudocode yet', () => {
+  it('renders Bellman-Ford pseudocode now that all five algorithms are implemented', () => {
     useAlgorithmStore.setState({ selectedAlgorithmId: 'bellman-ford' })
+    render(<PseudocodePanel />)
+    expect(
+      screen.getByText(/BellmanFord\(graph, start, target\)/),
+    ).toBeInTheDocument()
+  })
+
+  it('shows a fallback message when no pseudocode is registered for the selected id', () => {
+    // Defensive coverage for the lookup-miss branch; every real AlgorithmId
+    // has pseudocode now, so this simulates an id the lookup doesn't have.
+    useAlgorithmStore.setState({
+      selectedAlgorithmId: 'not-a-real-algorithm' as never,
+    })
     render(<PseudocodePanel />)
     expect(screen.getByText(/isn't available yet/)).toBeInTheDocument()
   })

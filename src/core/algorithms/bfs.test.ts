@@ -36,6 +36,9 @@ describe('runBFS', () => {
     expect(last.type).toBe('no-path')
     expect(last.state.path).toBeNull()
     expect(result.metrics.pathLength).toBeNull()
+    // No node/edge should still look "current" once the search is exhausted.
+    expect(last.state.currentNodeId).toBeNull()
+    expect(last.state.currentEdgeId).toBeNull()
   })
 
   it('handles start === target as a trivial single-node path', () => {

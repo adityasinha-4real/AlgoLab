@@ -134,6 +134,8 @@ export function runDijkstra(graph: Graph): ExecutionResult {
       `Priority queue exhausted without reaching ${labelOf(target)} - no path exists.`,
       (s) => {
         s.path = null
+        s.currentNodeId = null
+        s.currentEdgeId = null
       },
     )
   }
