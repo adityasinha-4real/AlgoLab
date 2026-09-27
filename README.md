@@ -1,5 +1,7 @@
 # AlgoLab
 
+**Live demo: [algo-lab-chi.vercel.app](https://algo-lab-chi.vercel.app/)**
+
 An interactive algorithm laboratory for constructing graphs and grids and
 executing BFS, DFS, Dijkstra, A\*, and Bellman-Ford step by step while
 inspecting their internal state — reversible execution, live state
