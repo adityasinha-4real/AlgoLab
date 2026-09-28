@@ -4,8 +4,12 @@ import {
   getStraightPath,
   type EdgeProps,
 } from '@xyflow/react'
+import { memo } from 'react'
 
-export function GraphEdgeView({
+// See GraphNodeView for why custom xyflow node/edge components are memoized:
+// it avoids recomputing every edge's path and label when an unrelated node
+// or edge changes (e.g. while dragging a node elsewhere on the canvas).
+export const GraphEdgeView = memo(function GraphEdgeView({
   id,
   sourceX,
   sourceY,
@@ -66,4 +70,4 @@ export function GraphEdgeView({
       </EdgeLabelRenderer>
     </>
   )
-}
+})

@@ -1,4 +1,5 @@
 import { Handle, Position, type NodeProps } from '@xyflow/react'
+import { memo } from 'react'
 
 export type NodeAlgorithmStatus =
   'default' | 'frontier' | 'visited' | 'current' | 'path'
@@ -19,7 +20,14 @@ const STATUS_FILL: Record<NodeAlgorithmStatus, string> = {
   path: 'bg-emerald-400 text-surface-0',
 }
 
-export function GraphNodeView({ data, selected }: NodeProps) {
+// Custom node components re-render whenever xyflow's internal store changes
+// (dragging, viewport, selection), even for nodes whose own data didn't
+// change. Since a graph can have many nodes rendered at once, memoizing
+// avoids re-rendering every node whenever any one of them is dragged.
+export const GraphNodeView = memo(function GraphNodeView({
+  data,
+  selected,
+}: NodeProps) {
   const nodeData = data as GraphNodeData
   const ring = nodeData.isStart
     ? 'border-emerald-400'
@@ -49,4 +57,4 @@ export function GraphNodeView({ data, selected }: NodeProps) {
       )}
     </div>
   )
-}
+})
