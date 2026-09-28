@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useGraphStore } from '../../state/graphStore'
 import { GraphToolbar } from './GraphToolbar'
 
@@ -44,5 +44,23 @@ describe('GraphToolbar', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Clear' }))
 
     expect(useGraphStore.getState().graph.nodes).toHaveLength(0)
+  })
+
+  it('copies a share link to the clipboard', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined)
+    Object.assign(navigator, { clipboard: { writeText } })
+
+    useGraphStore.getState().addNodeAt(0, 0)
+    render(<GraphToolbar />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Copy share link' }))
+
+    await waitFor(() => expect(writeText).toHaveBeenCalledTimes(1))
+    expect(writeText.mock.calls[0][0]).toContain('?s=')
+    await waitFor(() =>
+      expect(
+        screen.getByRole('button', { name: 'Link copied!' }),
+      ).toBeInTheDocument(),
+    )
   })
 })
