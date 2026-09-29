@@ -102,6 +102,19 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     requiresHeuristic: false,
     frontierStructure: 'queue',
   },
+  'topological-sort': {
+    id: 'topological-sort',
+    name: 'Topological Sort (Kahn)',
+    description:
+      'Repeatedly removes nodes with no incoming edges to order a directed acyclic graph so every edge points forward. Reports a cycle if no such order exists.',
+    timeComplexity: 'O(V + E)',
+    spaceComplexity: 'O(V)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: false,
+    requiresHeuristic: false,
+    wholeGraph: true,
+    frontierStructure: 'queue',
+  },
 }
 
 export function getAlgorithmMetadata(id: AlgorithmId): AlgorithmMetadata {

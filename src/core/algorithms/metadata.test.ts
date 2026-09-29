@@ -14,6 +14,7 @@ describe('algorithm metadata', () => {
         'greedy-best-first',
         'bidirectional-bfs',
         'zero-one-bfs',
+        'topological-sort',
       ].sort(),
     )
   })

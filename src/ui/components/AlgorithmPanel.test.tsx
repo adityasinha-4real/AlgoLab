@@ -47,6 +47,31 @@ describe('AlgorithmPanel', () => {
     expect(result?.steps.length).toBeGreaterThan(0)
   })
 
+  it('enables a whole-graph algorithm without a start or target node', () => {
+    const graph = GRAPH_PRESETS['simple-path'].build()
+    useGraphStore
+      .getState()
+      .setGraph({ ...graph, startNodeId: null, targetNodeId: null })
+    useAlgorithmStore.setState({ selectedAlgorithmId: 'topological-sort' })
+    render(<AlgorithmPanel />)
+
+    expect(
+      screen.getByRole('button', { name: /Run TOPOLOGICAL/ }),
+    ).not.toBeDisabled()
+    expect(screen.queryByText(/Fix the graph before running/)).toBeNull()
+  })
+
+  it('shows the runner error when a whole-graph algorithm rejects the graph', () => {
+    const graph = GRAPH_PRESETS['simple-path'].build()
+    useGraphStore.getState().setGraph(graph)
+    useAlgorithmStore.setState({ selectedAlgorithmId: 'topological-sort' })
+    render(<AlgorithmPanel />)
+
+    fireEvent.click(screen.getByRole('button', { name: /Run TOPOLOGICAL/ }))
+
+    expect(screen.getByText(/requires a directed graph/)).toBeInTheDocument()
+  })
+
   it('runs DFS when DFS is selected', () => {
     useGraphStore.getState().setGraph(GRAPH_PRESETS['simple-path'].build())
     render(<AlgorithmPanel />)

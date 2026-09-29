@@ -9,6 +9,7 @@ export type AlgorithmId =
   | 'greedy-best-first'
   | 'bidirectional-bfs'
   | 'zero-one-bfs'
+  | 'topological-sort'
 
 export interface AlgorithmMetadata {
   id: AlgorithmId

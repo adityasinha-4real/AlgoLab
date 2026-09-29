@@ -6,6 +6,7 @@ import { runBellmanFord } from './bellmanFord'
 import { runBFS } from './bfs'
 import { runDFS } from './dfs'
 import { runDijkstra } from './dijkstra'
+import { runTopologicalSort } from './topologicalSort'
 import { runZeroOneBFS } from './zeroOneBfs'
 import { runBidirectionalBFS } from './bidirectionalBfs'
 import { runGreedyBestFirst } from './greedyBestFirst'
@@ -24,6 +25,7 @@ export const ALGORITHM_RUNNERS: Partial<Record<AlgorithmId, AlgorithmRunner>> =
     'greedy-best-first': runGreedyBestFirst,
     'bidirectional-bfs': runBidirectionalBFS,
     'zero-one-bfs': runZeroOneBFS,
+    'topological-sort': runTopologicalSort,
   }
 
 export function getAlgorithmRunner(

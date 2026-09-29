@@ -24,6 +24,13 @@ describe('compareAlgorithms', () => {
     ])
   })
 
+  it('leaves whole-graph algorithms out of the comparison', () => {
+    const ids = compareAlgorithms(GRAPH_PRESETS['simple-path'].build()).map(
+      (e) => e.algorithmId,
+    )
+    expect(ids).not.toContain('topological-sort')
+  })
+
   it('gives every algorithm real metrics on a valid non-negative graph', () => {
     const entries = compareAlgorithms(GRAPH_PRESETS['simple-path'].build())
     // simple-path weights are 2, 3 and 1, which 0-1 BFS rejects (covered below).
