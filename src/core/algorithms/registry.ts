@@ -6,6 +6,7 @@ import { runBellmanFord } from './bellmanFord'
 import { runBFS } from './bfs'
 import { runDFS } from './dfs'
 import { runDijkstra } from './dijkstra'
+import { runBipartiteCheck } from './bipartiteCheck'
 import { runCycleDetection } from './cycleDetection'
 import { runBridgesArticulation } from './bridgesArticulation'
 import { runTarjanScc } from './tarjanScc'
@@ -36,6 +37,7 @@ export const ALGORITHM_RUNNERS: Partial<Record<AlgorithmId, AlgorithmRunner>> =
     'tarjan-scc': runTarjanScc,
     'bridges-articulation': runBridgesArticulation,
     'cycle-detection': runCycleDetection,
+    'bipartite-check': runBipartiteCheck,
   }
 
 export function getAlgorithmRunner(

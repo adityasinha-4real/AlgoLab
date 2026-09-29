@@ -20,6 +20,7 @@ describe('algorithm metadata', () => {
         'tarjan-scc',
         'bridges-articulation',
         'cycle-detection',
+        'bipartite-check',
       ].sort(),
     )
   })

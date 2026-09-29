@@ -4,6 +4,7 @@ import { BELLMAN_FORD_PSEUDOCODE } from './bellmanFord'
 import { BFS_PSEUDOCODE } from './bfs'
 import { DFS_PSEUDOCODE } from './dfs'
 import { DIJKSTRA_PSEUDOCODE } from './dijkstra'
+import { BIPARTITE_CHECK_PSEUDOCODE } from './bipartiteCheck'
 import { CYCLE_DETECTION_PSEUDOCODE } from './cycleDetection'
 import { BRIDGES_ARTICULATION_PSEUDOCODE } from './bridgesArticulation'
 import { TARJAN_SCC_PSEUDOCODE } from './tarjanScc'
@@ -20,6 +21,7 @@ export { DIJKSTRA_PSEUDOCODE } from './dijkstra'
 export { ASTAR_PSEUDOCODE } from './astar'
 export { ASTAR_GRID_PSEUDOCODE } from './astarGrid'
 export { BELLMAN_FORD_PSEUDOCODE } from './bellmanFord'
+export { BIPARTITE_CHECK_PSEUDOCODE } from './bipartiteCheck'
 export { CYCLE_DETECTION_PSEUDOCODE } from './cycleDetection'
 export { BRIDGES_ARTICULATION_PSEUDOCODE } from './bridgesArticulation'
 export { TARJAN_SCC_PSEUDOCODE } from './tarjanScc'
@@ -38,6 +40,7 @@ export const PSEUDOCODE_BY_ALGORITHM: Partial<
   dijkstra: DIJKSTRA_PSEUDOCODE,
   astar: ASTAR_PSEUDOCODE,
   'bellman-ford': BELLMAN_FORD_PSEUDOCODE,
+  'bipartite-check': BIPARTITE_CHECK_PSEUDOCODE,
   'cycle-detection': CYCLE_DETECTION_PSEUDOCODE,
   'bridges-articulation': BRIDGES_ARTICULATION_PSEUDOCODE,
   'tarjan-scc': TARJAN_SCC_PSEUDOCODE,

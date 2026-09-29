@@ -180,6 +180,19 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     wholeGraph: true,
     frontierStructure: 'stack',
   },
+  'bipartite-check': {
+    id: 'bipartite-check',
+    name: 'Bipartite Check',
+    description:
+      'Two-colors the graph with a breadth-first search, ignoring edge direction. Any edge joining two same-colored nodes proves an odd cycle, which is highlighted.',
+    timeComplexity: 'O(V + E)',
+    spaceComplexity: 'O(V)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: false,
+    requiresHeuristic: false,
+    wholeGraph: true,
+    frontierStructure: 'queue',
+  },
 }
 
 export function getAlgorithmMetadata(id: AlgorithmId): AlgorithmMetadata {

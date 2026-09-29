@@ -15,6 +15,7 @@ export type AlgorithmId =
   | 'tarjan-scc'
   | 'bridges-articulation'
   | 'cycle-detection'
+  | 'bipartite-check'
 
 export interface AlgorithmMetadata {
   id: AlgorithmId
