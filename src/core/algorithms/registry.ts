@@ -6,6 +6,7 @@ import { runBellmanFord } from './bellmanFord'
 import { runBFS } from './bfs'
 import { runDFS } from './dfs'
 import { runDijkstra } from './dijkstra'
+import { runCycleDetection } from './cycleDetection'
 import { runBridgesArticulation } from './bridgesArticulation'
 import { runTarjanScc } from './tarjanScc'
 import { runKruskal } from './kruskal'
@@ -34,6 +35,7 @@ export const ALGORITHM_RUNNERS: Partial<Record<AlgorithmId, AlgorithmRunner>> =
     kruskal: runKruskal,
     'tarjan-scc': runTarjanScc,
     'bridges-articulation': runBridgesArticulation,
+    'cycle-detection': runCycleDetection,
   }
 
 export function getAlgorithmRunner(

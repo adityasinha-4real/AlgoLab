@@ -14,6 +14,7 @@ export type AlgorithmId =
   | 'kruskal'
   | 'tarjan-scc'
   | 'bridges-articulation'
+  | 'cycle-detection'
 
 export interface AlgorithmMetadata {
   id: AlgorithmId

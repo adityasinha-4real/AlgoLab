@@ -167,6 +167,19 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     wholeGraph: true,
     frontierStructure: 'stack',
   },
+  'cycle-detection': {
+    id: 'cycle-detection',
+    name: 'Cycle Detection',
+    description:
+      'Depth-first search with gray/black coloring that stops at the first cycle it finds and highlights it. Works on directed, undirected and mixed graphs.',
+    timeComplexity: 'O(V + E)',
+    spaceComplexity: 'O(V)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: false,
+    requiresHeuristic: false,
+    wholeGraph: true,
+    frontierStructure: 'stack',
+  },
 }
 
 export function getAlgorithmMetadata(id: AlgorithmId): AlgorithmMetadata {

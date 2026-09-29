@@ -19,6 +19,7 @@ describe('algorithm metadata', () => {
         'kruskal',
         'tarjan-scc',
         'bridges-articulation',
+        'cycle-detection',
       ].sort(),
     )
   })
