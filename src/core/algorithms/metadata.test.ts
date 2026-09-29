@@ -12,6 +12,7 @@ describe('algorithm metadata', () => {
         'dfs',
         'dijkstra',
         'greedy-best-first',
+        'bidirectional-bfs',
       ].sort(),
     )
   })

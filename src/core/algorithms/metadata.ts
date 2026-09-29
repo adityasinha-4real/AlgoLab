@@ -78,6 +78,18 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     requiresHeuristic: true,
     frontierStructure: 'priority-queue',
   },
+  'bidirectional-bfs': {
+    id: 'bidirectional-bfs',
+    name: 'Bidirectional BFS',
+    description:
+      'Runs a breadth-first search from the start and another backward from the target until they meet, finding the fewest-edges path while exploring far fewer nodes.',
+    timeComplexity: 'O(V + E)',
+    spaceComplexity: 'O(V)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: true,
+    requiresHeuristic: false,
+    frontierStructure: 'queue',
+  },
 }
 
 export function getAlgorithmMetadata(id: AlgorithmId): AlgorithmMetadata {

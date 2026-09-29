@@ -1,7 +1,13 @@
 import type { NodeId } from '../graph/types'
 
 export type AlgorithmId =
-  'bfs' | 'dfs' | 'dijkstra' | 'astar' | 'bellman-ford' | 'greedy-best-first'
+  | 'bfs'
+  | 'dfs'
+  | 'dijkstra'
+  | 'astar'
+  | 'bellman-ford'
+  | 'greedy-best-first'
+  | 'bidirectional-bfs'
 
 export interface AlgorithmMetadata {
   id: AlgorithmId

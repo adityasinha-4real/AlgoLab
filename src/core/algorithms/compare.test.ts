@@ -19,6 +19,7 @@ describe('compareAlgorithms', () => {
       'astar',
       'bellman-ford',
       'greedy-best-first',
+      'bidirectional-bfs',
     ])
   })
 
