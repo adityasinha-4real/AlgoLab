@@ -13,6 +13,7 @@ export type AlgorithmId =
   | 'prim'
   | 'kruskal'
   | 'tarjan-scc'
+  | 'bridges-articulation'
 
 export interface AlgorithmMetadata {
   id: AlgorithmId

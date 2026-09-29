@@ -154,6 +154,19 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     wholeGraph: true,
     frontierStructure: 'stack',
   },
+  'bridges-articulation': {
+    id: 'bridges-articulation',
+    name: 'Bridges & Articulation Points',
+    description:
+      'Finds the edges (bridges) and nodes (articulation points) whose removal disconnects an undirected graph, using discovery indexes and low-link values in one depth-first pass.',
+    timeComplexity: 'O(V + E)',
+    spaceComplexity: 'O(V)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: false,
+    requiresHeuristic: false,
+    wholeGraph: true,
+    frontierStructure: 'stack',
+  },
 }
 
 export function getAlgorithmMetadata(id: AlgorithmId): AlgorithmMetadata {

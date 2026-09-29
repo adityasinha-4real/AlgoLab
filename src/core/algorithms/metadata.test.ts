@@ -18,6 +18,7 @@ describe('algorithm metadata', () => {
         'prim',
         'kruskal',
         'tarjan-scc',
+        'bridges-articulation',
       ].sort(),
     )
   })

@@ -6,6 +6,7 @@ import { runBellmanFord } from './bellmanFord'
 import { runBFS } from './bfs'
 import { runDFS } from './dfs'
 import { runDijkstra } from './dijkstra'
+import { runBridgesArticulation } from './bridgesArticulation'
 import { runTarjanScc } from './tarjanScc'
 import { runKruskal } from './kruskal'
 import { runPrim } from './prim'
@@ -32,6 +33,7 @@ export const ALGORITHM_RUNNERS: Partial<Record<AlgorithmId, AlgorithmRunner>> =
     prim: runPrim,
     kruskal: runKruskal,
     'tarjan-scc': runTarjanScc,
+    'bridges-articulation': runBridgesArticulation,
   }
 
 export function getAlgorithmRunner(
