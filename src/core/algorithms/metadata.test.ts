@@ -17,6 +17,7 @@ describe('algorithm metadata', () => {
         'topological-sort',
         'prim',
         'kruskal',
+        'tarjan-scc',
       ].sort(),
     )
   })

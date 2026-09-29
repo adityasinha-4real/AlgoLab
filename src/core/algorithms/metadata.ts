@@ -141,6 +141,19 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     wholeGraph: true,
     frontierStructure: 'priority-queue',
   },
+  'tarjan-scc': {
+    id: 'tarjan-scc',
+    name: "Tarjan's SCC",
+    description:
+      'Finds strongly connected components of a directed graph in a single depth-first pass, using discovery indexes and low-link values with a node stack.',
+    timeComplexity: 'O(V + E)',
+    spaceComplexity: 'O(V)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: false,
+    requiresHeuristic: false,
+    wholeGraph: true,
+    frontierStructure: 'stack',
+  },
 }
 
 export function getAlgorithmMetadata(id: AlgorithmId): AlgorithmMetadata {

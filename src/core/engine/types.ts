@@ -12,6 +12,7 @@ export type AlgorithmId =
   | 'topological-sort'
   | 'prim'
   | 'kruskal'
+  | 'tarjan-scc'
 
 export interface AlgorithmMetadata {
   id: AlgorithmId
