@@ -128,6 +128,19 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     wholeGraph: true,
     frontierStructure: 'priority-queue',
   },
+  kruskal: {
+    id: 'kruskal',
+    name: "Kruskal's MST",
+    description:
+      'Builds a minimum spanning tree by taking edges from cheapest to dearest, skipping any that would join two nodes already connected. Needs an undirected graph; negative weights are fine.',
+    timeComplexity: 'O(E log E)',
+    spaceComplexity: 'O(V)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: false,
+    requiresHeuristic: false,
+    wholeGraph: true,
+    frontierStructure: 'priority-queue',
+  },
 }
 
 export function getAlgorithmMetadata(id: AlgorithmId): AlgorithmMetadata {

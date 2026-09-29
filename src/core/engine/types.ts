@@ -11,6 +11,7 @@ export type AlgorithmId =
   | 'zero-one-bfs'
   | 'topological-sort'
   | 'prim'
+  | 'kruskal'
 
 export interface AlgorithmMetadata {
   id: AlgorithmId

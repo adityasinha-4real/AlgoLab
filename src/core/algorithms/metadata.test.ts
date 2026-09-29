@@ -16,6 +16,7 @@ describe('algorithm metadata', () => {
         'zero-one-bfs',
         'topological-sort',
         'prim',
+        'kruskal',
       ].sort(),
     )
   })
