@@ -2,10 +2,17 @@ import { describe, expect, it } from 'vitest'
 import { getAlgorithmMetadata, listAlgorithmMetadata } from './metadata'
 
 describe('algorithm metadata', () => {
-  it('lists exactly the five supported algorithms', () => {
+  it('lists exactly the supported algorithms', () => {
     const ids = listAlgorithmMetadata().map((m) => m.id)
     expect(ids.sort()).toEqual(
-      ['astar', 'bellman-ford', 'bfs', 'dfs', 'dijkstra'].sort(),
+      [
+        'astar',
+        'bellman-ford',
+        'bfs',
+        'dfs',
+        'dijkstra',
+        'greedy-best-first',
+      ].sort(),
     )
   })
 

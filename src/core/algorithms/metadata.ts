@@ -66,6 +66,18 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     requiresHeuristic: false,
     frontierStructure: 'relaxation-passes',
   },
+  'greedy-best-first': {
+    id: 'greedy-best-first',
+    name: 'Greedy Best-First Search',
+    description:
+      'Always expands the node that looks closest to the target by heuristic alone, ignoring the cost so far. Fast, but does not guarantee shortest paths.',
+    timeComplexity: 'O(E log V)',
+    spaceComplexity: 'O(V)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: false,
+    requiresHeuristic: true,
+    frontierStructure: 'priority-queue',
+  },
 }
 
 export function getAlgorithmMetadata(id: AlgorithmId): AlgorithmMetadata {

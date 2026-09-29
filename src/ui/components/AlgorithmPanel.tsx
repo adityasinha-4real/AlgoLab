@@ -20,9 +20,14 @@ export function AlgorithmPanel() {
   const [runError, setRunError] = useState<string | null>(null)
 
   const runner = getAlgorithmRunner(selectedAlgorithmId)
-  const validationErrors = validateGraph(graph)
-  const canRun = Boolean(runner) && validationErrors.length === 0
   const selectedMetadata = getAlgorithmMetadata(selectedAlgorithmId)
+  // Whole-graph algorithms need neither a start nor a target, so only an
+  // empty graph is a structural problem for them.
+  const validationErrors =
+    selectedMetadata.wholeGraph && graph.nodes.length > 0
+      ? []
+      : validateGraph(graph)
+  const canRun = Boolean(runner) && validationErrors.length === 0
 
   const handleRun = () => {
     if (!runner) return

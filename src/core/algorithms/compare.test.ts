@@ -18,6 +18,7 @@ describe('compareAlgorithms', () => {
       'dijkstra',
       'astar',
       'bellman-ford',
+      'greedy-best-first',
     ])
   })
 

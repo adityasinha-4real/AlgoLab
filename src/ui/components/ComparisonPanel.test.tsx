@@ -34,7 +34,7 @@ describe('ComparisonPanel', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Compare all' }))
 
-    expect(screen.getAllByText(/negative edge weights/).length).toBe(2)
+    expect(screen.getAllByText(/negative edge weights/).length).toBe(3)
   })
 
   it('clears the comparison table', () => {

@@ -2,7 +2,7 @@ import { Handle, Position, type NodeProps } from '@xyflow/react'
 import { memo } from 'react'
 
 export type NodeAlgorithmStatus =
-  'default' | 'frontier' | 'visited' | 'current' | 'path'
+  'default' | 'frontier' | 'visited' | 'current' | 'path' | `group-${number}`
 
 export interface GraphNodeData {
   label: string
@@ -12,12 +12,33 @@ export interface GraphNodeData {
   [key: string]: unknown
 }
 
-const STATUS_FILL: Record<NodeAlgorithmStatus, string> = {
+const STATUS_FILL: Record<
+  'default' | 'frontier' | 'visited' | 'current' | 'path',
+  string
+> = {
   default: 'bg-surface-2',
   frontier: 'bg-amber-400/20',
   visited: 'bg-accent/15',
   current: 'bg-accent text-surface-0',
   path: 'bg-emerald-400 text-surface-0',
+}
+
+// Group colors (SCCs, bipartite sides, articulation points) cycle through
+// this palette; tailwind needs the class names to appear literally.
+const GROUP_FILL = [
+  'bg-sky-400/50',
+  'bg-rose-400/50',
+  'bg-violet-400/50',
+  'bg-amber-400/50',
+  'bg-teal-400/50',
+  'bg-fuchsia-400/50',
+]
+
+function fillFor(status: NodeAlgorithmStatus): string {
+  if (status.startsWith('group-')) {
+    return GROUP_FILL[Number(status.slice(6)) % GROUP_FILL.length]
+  }
+  return STATUS_FILL[status as keyof typeof STATUS_FILL]
 }
 
 // Custom node components re-render whenever xyflow's internal store changes
@@ -46,7 +67,7 @@ export const GraphNodeView = memo(function GraphNodeView({
         className="!absolute !inset-0 !h-full !w-full !translate-x-0 !translate-y-0 !rounded-full !border-0 !bg-transparent"
       />
       <div
-        className={`pointer-events-none flex h-12 w-12 items-center justify-center rounded-full border-2 text-sm font-medium text-text-primary transition-colors ${ring} ${STATUS_FILL[nodeData.status]}`}
+        className={`pointer-events-none flex h-12 w-12 items-center justify-center rounded-full border-2 text-sm font-medium text-text-primary transition-colors ${ring} ${fillFor(nodeData.status)}`}
       >
         {nodeData.label}
       </div>

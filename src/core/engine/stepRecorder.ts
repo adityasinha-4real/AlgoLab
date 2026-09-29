@@ -60,5 +60,9 @@ function cloneState(state: AlgorithmState): AlgorithmState {
     path: state.path ? [...state.path] : null,
     pass: state.pass,
     heuristics: { ...state.heuristics },
+    ...(state.highlightedEdges && {
+      highlightedEdges: [...state.highlightedEdges],
+    }),
+    ...(state.nodeGroups && { nodeGroups: { ...state.nodeGroups } }),
   }
 }

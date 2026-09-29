@@ -4,6 +4,7 @@ import { BELLMAN_FORD_PSEUDOCODE } from './bellmanFord'
 import { BFS_PSEUDOCODE } from './bfs'
 import { DFS_PSEUDOCODE } from './dfs'
 import { DIJKSTRA_PSEUDOCODE } from './dijkstra'
+import { GREEDY_BEST_FIRST_PSEUDOCODE } from './greedyBestFirst'
 
 export { BFS_PSEUDOCODE } from './bfs'
 export { DFS_PSEUDOCODE } from './dfs'
@@ -11,6 +12,7 @@ export { DIJKSTRA_PSEUDOCODE } from './dijkstra'
 export { ASTAR_PSEUDOCODE } from './astar'
 export { ASTAR_GRID_PSEUDOCODE } from './astarGrid'
 export { BELLMAN_FORD_PSEUDOCODE } from './bellmanFord'
+export { GREEDY_BEST_FIRST_PSEUDOCODE } from './greedyBestFirst'
 
 export const PSEUDOCODE_BY_ALGORITHM: Partial<
   Record<AlgorithmId, readonly string[]>
@@ -20,4 +22,5 @@ export const PSEUDOCODE_BY_ALGORITHM: Partial<
   dijkstra: DIJKSTRA_PSEUDOCODE,
   astar: ASTAR_PSEUDOCODE,
   'bellman-ford': BELLMAN_FORD_PSEUDOCODE,
+  'greedy-best-first': GREEDY_BEST_FIRST_PSEUDOCODE,
 }

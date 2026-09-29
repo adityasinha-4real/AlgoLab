@@ -1,6 +1,7 @@
 import type { NodeId } from '../graph/types'
 
-export type AlgorithmId = 'bfs' | 'dfs' | 'dijkstra' | 'astar' | 'bellman-ford'
+export type AlgorithmId =
+  'bfs' | 'dfs' | 'dijkstra' | 'astar' | 'bellman-ford' | 'greedy-best-first'
 
 export interface AlgorithmMetadata {
   id: AlgorithmId
@@ -11,6 +12,8 @@ export interface AlgorithmMetadata {
   supportsNegativeWeights: boolean
   guaranteesShortestPath: boolean
   requiresHeuristic: boolean
+  /** True for algorithms that process the whole graph and need no start or target. */
+  wholeGraph?: boolean
   /** What kind of structure `AlgorithmState.frontier` represents for this algorithm. */
   frontierStructure: 'queue' | 'stack' | 'priority-queue' | 'relaxation-passes'
 }
@@ -40,6 +43,10 @@ export interface AlgorithmState {
   pass: number | null
   /** Heuristic estimate h(n) per node id, used only by A*. f(n) = distances[n] + heuristics[n]. */
   heuristics: Record<NodeId, number>
+  /** Edge ids highlighted as part of a result (MST edges, bridges); rendered like path edges. */
+  highlightedEdges?: string[]
+  /** Group index per node id (SCC, bipartite side, articulation flag); rendered as a per-group color. */
+  nodeGroups?: Record<NodeId, number>
 }
 
 export type StepType =
@@ -53,6 +60,7 @@ export type StepType =
   | 'path-found'
   | 'no-path'
   | 'negative-cycle'
+  | 'cycle-found'
   | 'done'
 
 export interface ExecutionStep {
