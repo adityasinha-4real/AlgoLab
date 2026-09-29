@@ -115,6 +115,19 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     wholeGraph: true,
     frontierStructure: 'queue',
   },
+  prim: {
+    id: 'prim',
+    name: "Prim's MST",
+    description:
+      'Grows a minimum spanning tree from one node by repeatedly adding the cheapest edge that reaches a new node. Needs an undirected graph; negative weights are fine.',
+    timeComplexity: 'O(E log V)',
+    spaceComplexity: 'O(V + E)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: false,
+    requiresHeuristic: false,
+    wholeGraph: true,
+    frontierStructure: 'priority-queue',
+  },
 }
 
 export function getAlgorithmMetadata(id: AlgorithmId): AlgorithmMetadata {

@@ -6,6 +6,7 @@ import { runBellmanFord } from './bellmanFord'
 import { runBFS } from './bfs'
 import { runDFS } from './dfs'
 import { runDijkstra } from './dijkstra'
+import { runPrim } from './prim'
 import { runTopologicalSort } from './topologicalSort'
 import { runZeroOneBFS } from './zeroOneBfs'
 import { runBidirectionalBFS } from './bidirectionalBfs'
@@ -26,6 +27,7 @@ export const ALGORITHM_RUNNERS: Partial<Record<AlgorithmId, AlgorithmRunner>> =
     'bidirectional-bfs': runBidirectionalBFS,
     'zero-one-bfs': runZeroOneBFS,
     'topological-sort': runTopologicalSort,
+    prim: runPrim,
   }
 
 export function getAlgorithmRunner(

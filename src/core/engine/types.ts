@@ -10,6 +10,7 @@ export type AlgorithmId =
   | 'bidirectional-bfs'
   | 'zero-one-bfs'
   | 'topological-sort'
+  | 'prim'
 
 export interface AlgorithmMetadata {
   id: AlgorithmId
