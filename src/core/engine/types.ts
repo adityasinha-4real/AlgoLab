@@ -8,6 +8,7 @@ export type AlgorithmId =
   | 'bellman-ford'
   | 'greedy-best-first'
   | 'bidirectional-bfs'
+  | 'zero-one-bfs'
 
 export interface AlgorithmMetadata {
   id: AlgorithmId

@@ -90,6 +90,18 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     requiresHeuristic: false,
     frontierStructure: 'queue',
   },
+  'zero-one-bfs': {
+    id: 'zero-one-bfs',
+    name: '0-1 BFS',
+    description:
+      "Shortest paths when every edge weighs 0 or 1: a deque replaces Dijkstra's priority queue, with zero-weight edges pushing to the front and one-weight edges to the back.",
+    timeComplexity: 'O(V + E)',
+    spaceComplexity: 'O(V)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: true,
+    requiresHeuristic: false,
+    frontierStructure: 'queue',
+  },
 }
 
 export function getAlgorithmMetadata(id: AlgorithmId): AlgorithmMetadata {

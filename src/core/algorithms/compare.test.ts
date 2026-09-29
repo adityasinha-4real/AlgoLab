@@ -20,16 +20,27 @@ describe('compareAlgorithms', () => {
       'bellman-ford',
       'greedy-best-first',
       'bidirectional-bfs',
+      'zero-one-bfs',
     ])
   })
 
   it('gives every algorithm real metrics on a valid non-negative graph', () => {
     const entries = compareAlgorithms(GRAPH_PRESETS['simple-path'].build())
-    for (const entry of entries) {
+    // simple-path weights are 2, 3 and 1, which 0-1 BFS rejects (covered below).
+    for (const entry of entries.filter(
+      (e) => e.algorithmId !== 'zero-one-bfs',
+    )) {
       expect(entry.error).toBeNull()
       expect(entry.metrics).not.toBeNull()
       expect(entry.metrics!.pathLength).toBe(3)
     }
+  })
+
+  it('reports 0-1 BFS as unable to run on weights other than 0 and 1', () => {
+    const entries = compareAlgorithms(GRAPH_PRESETS['simple-path'].build())
+    const zeroOne = entries.find((e) => e.algorithmId === 'zero-one-bfs')!
+    expect(zeroOne.metrics).toBeNull()
+    expect(zeroOne.error).toMatch(/exactly 0 or 1/)
   })
 
   it('BFS and Dijkstra can disagree on path length on a graph where hop count and weight diverge', () => {

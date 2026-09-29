@@ -13,6 +13,7 @@ describe('algorithm metadata', () => {
         'dijkstra',
         'greedy-best-first',
         'bidirectional-bfs',
+        'zero-one-bfs',
       ].sort(),
     )
   })
