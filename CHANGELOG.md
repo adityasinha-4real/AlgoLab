@@ -9,6 +9,15 @@ Hardening and polish pass ahead of a public v1.1 release: strict TypeScript,
 resilience (error boundary), persistence, test coverage gating, an E2E smoke
 test, and a UI performance pass.
 
+### Added
+
+- **Kosaraju's SCC** - two-pass strongly connected components, cross-checked
+  against Tarjan's SCC.
+- **Borůvka's MST** - round-based minimum spanning tree, verified against
+  Kruskal's MST weight.
+- **Floyd-Warshall** - all-pairs shortest paths with negative-cycle
+  detection, plus a distance-matrix table in the state inspector.
+
 ## [1.0.0] - 2026-09-27
 
 Initial public release. Built up through fifteen milestones:

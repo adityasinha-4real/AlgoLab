@@ -3,7 +3,7 @@
 **Live demo: [algo-lab-chi.vercel.app](https://algo-lab-chi.vercel.app/)**
 
 An interactive algorithm laboratory for constructing graphs and grids and
-executing 15 graph algorithms step by step while inspecting their internal
+executing 18 graph algorithms step by step while inspecting their internal
 state — reversible execution, live state inspection, synchronized
 pseudocode, deterministic explanations, and algorithm comparison. No
 backend, no LLM, no paid APIs.
@@ -15,7 +15,7 @@ backend, no LLM, no paid APIs.
   generation, and preset graphs covering common demo and error cases.
 - **A\* grid mode** — a separate paintable grid with walls, per-cell terrain
   cost (1–3), and A\* using a Manhattan-distance heuristic.
-- **15 algorithms** across pathfinding, spanning trees, and structural graph
+- **18 algorithms** across pathfinding, spanning trees, and structural graph
   analysis (see the reference below).
 - **Reversible execution** — play/pause, step forward/backward, jump to
   start/end, speed control, and a clickable/keyboard-operable timeline.
@@ -44,28 +44,31 @@ backend, no LLM, no paid APIs.
 
 ### Pathfinding and traversal
 
-| Algorithm                | Time             | Space | Negative weights | Shortest path guarantee             |
-| ------------------------ | ---------------- | ----- | ---------------- | ----------------------------------- |
-| BFS                      | O(V + E)         | O(V)  | No               | Fewest edges (unweighted graphs)    |
-| DFS                      | O(V + E)         | O(V)  | No               | None                                |
-| Bidirectional BFS        | O(V + E)         | O(V)  | No               | Fewest edges, exploring fewer nodes |
-| 0-1 BFS                  | O(V + E)         | O(V)  | No               | Yes, when every edge weighs 0 or 1  |
-| Dijkstra                 | O((V + E) log V) | O(V)  | No (rejected)    | Yes, on non-negative weights        |
-| A\*                      | O(E)             | O(V)  | No (rejected)    | Yes, with an admissible heuristic   |
-| Greedy Best-First Search | O(E log V)       | O(V)  | No               | None (heuristic only, ignores cost) |
-| Bellman-Ford             | O(V · E)         | O(V)  | Yes              | Yes, and detects negative cycles    |
+| Algorithm                | Time             | Space | Negative weights | Shortest path guarantee                      |
+| ------------------------ | ---------------- | ----- | ---------------- | -------------------------------------------- |
+| BFS                      | O(V + E)         | O(V)  | No               | Fewest edges (unweighted graphs)             |
+| DFS                      | O(V + E)         | O(V)  | No               | None                                         |
+| Bidirectional BFS        | O(V + E)         | O(V)  | No               | Fewest edges, exploring fewer nodes          |
+| 0-1 BFS                  | O(V + E)         | O(V)  | No               | Yes, when every edge weighs 0 or 1           |
+| Dijkstra                 | O((V + E) log V) | O(V)  | No (rejected)    | Yes, on non-negative weights                 |
+| A\*                      | O(E)             | O(V)  | No (rejected)    | Yes, with an admissible heuristic            |
+| Greedy Best-First Search | O(E log V)       | O(V)  | No               | None (heuristic only, ignores cost)          |
+| Bellman-Ford             | O(V · E)         | O(V)  | Yes              | Yes, and detects negative cycles             |
+| Floyd-Warshall           | O(V³)            | O(V²) | Yes              | Yes, for every pair; detects negative cycles |
 
 ### Spanning trees, ordering, and graph structure
 
-| Algorithm                     | Time       | Space    | What it finds                                              |
-| ----------------------------- | ---------- | -------- | ---------------------------------------------------------- |
-| Prim's MST                    | O(E log V) | O(V + E) | Minimum spanning tree grown from one node (undirected)     |
-| Kruskal's MST                 | O(E log E) | O(V)     | Minimum spanning tree by cheapest edges first (undirected) |
-| Topological Sort (Kahn)       | O(V + E)   | O(V)     | Node ordering of a DAG, or reports a cycle                 |
-| Tarjan's SCC                  | O(V + E)   | O(V)     | Strongly connected components of a directed graph          |
-| Bridges & Articulation Points | O(V + E)   | O(V)     | Edges/nodes whose removal disconnects an undirected graph  |
-| Cycle Detection               | O(V + E)   | O(V)     | First cycle found (directed, undirected, or mixed)         |
-| Bipartite Check               | O(V + E)   | O(V)     | A 2-coloring, or an odd cycle proving none exists          |
+| Algorithm                     | Time       | Space    | What it finds                                                                              |
+| ----------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------------ |
+| Prim's MST                    | O(E log V) | O(V + E) | Minimum spanning tree grown from one node (undirected)                                     |
+| Kruskal's MST                 | O(E log E) | O(V)     | Minimum spanning tree by cheapest edges first (undirected)                                 |
+| Borůvka's MST                 | O(E log V) | O(V + E) | Minimum spanning tree, each component picking its cheapest edge per round (undirected)     |
+| Topological Sort (Kahn)       | O(V + E)   | O(V)     | Node ordering of a DAG, or reports a cycle                                                 |
+| Tarjan's SCC                  | O(V + E)   | O(V)     | Strongly connected components of a directed graph                                          |
+| Kosaraju's SCC                | O(V + E)   | O(V + E) | Strongly connected components via two DFS passes (finish order, then the transposed graph) |
+| Bridges & Articulation Points | O(V + E)   | O(V)     | Edges/nodes whose removal disconnects an undirected graph                                  |
+| Cycle Detection               | O(V + E)   | O(V)     | First cycle found (directed, undirected, or mixed)                                         |
+| Bipartite Check               | O(V + E)   | O(V)     | A 2-coloring, or an odd cycle proving none exists                                          |
 
 A\*'s heuristic is provably admissible in both modes: grid mode uses the
 Manhattan distance (unconditionally admissible for a uniform 4-directional
@@ -125,7 +128,7 @@ push and pull request, plus a Playwright end-to-end job.
 
 ## Status
 
-v1.0 shipped with five algorithms; the project has since grown to 15, each
+v1.0 shipped with five algorithms; the project has since grown to 18, each
 with its own pseudocode, step explanations, and tests. Work in progress is
 tracked in [CHANGELOG.md](CHANGELOG.md).
 
