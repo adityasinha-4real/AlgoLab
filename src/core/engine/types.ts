@@ -13,6 +13,7 @@ export type AlgorithmId =
   | 'prim'
   | 'kruskal'
   | 'tarjan-scc'
+  | 'kosaraju-scc'
   | 'bridges-articulation'
   | 'cycle-detection'
   | 'bipartite-check'

@@ -8,6 +8,7 @@ import { BIPARTITE_CHECK_PSEUDOCODE } from './bipartiteCheck'
 import { CYCLE_DETECTION_PSEUDOCODE } from './cycleDetection'
 import { BRIDGES_ARTICULATION_PSEUDOCODE } from './bridgesArticulation'
 import { TARJAN_SCC_PSEUDOCODE } from './tarjanScc'
+import { KOSARAJU_SCC_PSEUDOCODE } from './kosarajuScc'
 import { KRUSKAL_PSEUDOCODE } from './kruskal'
 import { PRIM_PSEUDOCODE } from './prim'
 import { TOPOLOGICAL_SORT_PSEUDOCODE } from './topologicalSort'
@@ -25,6 +26,7 @@ export { BIPARTITE_CHECK_PSEUDOCODE } from './bipartiteCheck'
 export { CYCLE_DETECTION_PSEUDOCODE } from './cycleDetection'
 export { BRIDGES_ARTICULATION_PSEUDOCODE } from './bridgesArticulation'
 export { TARJAN_SCC_PSEUDOCODE } from './tarjanScc'
+export { KOSARAJU_SCC_PSEUDOCODE } from './kosarajuScc'
 export { KRUSKAL_PSEUDOCODE } from './kruskal'
 export { PRIM_PSEUDOCODE } from './prim'
 export { TOPOLOGICAL_SORT_PSEUDOCODE } from './topologicalSort'
@@ -44,6 +46,7 @@ export const PSEUDOCODE_BY_ALGORITHM: Partial<
   'cycle-detection': CYCLE_DETECTION_PSEUDOCODE,
   'bridges-articulation': BRIDGES_ARTICULATION_PSEUDOCODE,
   'tarjan-scc': TARJAN_SCC_PSEUDOCODE,
+  'kosaraju-scc': KOSARAJU_SCC_PSEUDOCODE,
   kruskal: KRUSKAL_PSEUDOCODE,
   prim: PRIM_PSEUDOCODE,
   'topological-sort': TOPOLOGICAL_SORT_PSEUDOCODE,

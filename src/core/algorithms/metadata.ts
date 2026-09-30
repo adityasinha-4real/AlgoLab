@@ -154,6 +154,19 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     wholeGraph: true,
     frontierStructure: 'stack',
   },
+  'kosaraju-scc': {
+    id: 'kosaraju-scc',
+    name: "Kosaraju's SCC",
+    description:
+      'Finds strongly connected components with two depth-first passes: one records finish order, the second sweeps the transposed graph in reverse finish order.',
+    timeComplexity: 'O(V + E)',
+    spaceComplexity: 'O(V + E)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: false,
+    requiresHeuristic: false,
+    wholeGraph: true,
+    frontierStructure: 'stack',
+  },
   'bridges-articulation': {
     id: 'bridges-articulation',
     name: 'Bridges & Articulation Points',

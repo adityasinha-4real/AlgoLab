@@ -18,6 +18,7 @@ describe('algorithm metadata', () => {
         'prim',
         'kruskal',
         'tarjan-scc',
+        'kosaraju-scc',
         'bridges-articulation',
         'cycle-detection',
         'bipartite-check',

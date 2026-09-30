@@ -10,6 +10,7 @@ import { runBipartiteCheck } from './bipartiteCheck'
 import { runCycleDetection } from './cycleDetection'
 import { runBridgesArticulation } from './bridgesArticulation'
 import { runTarjanScc } from './tarjanScc'
+import { runKosarajuScc } from './kosarajuScc'
 import { runKruskal } from './kruskal'
 import { runPrim } from './prim'
 import { runTopologicalSort } from './topologicalSort'
@@ -35,6 +36,7 @@ export const ALGORITHM_RUNNERS: Partial<Record<AlgorithmId, AlgorithmRunner>> =
     prim: runPrim,
     kruskal: runKruskal,
     'tarjan-scc': runTarjanScc,
+    'kosaraju-scc': runKosarajuScc,
     'bridges-articulation': runBridgesArticulation,
     'cycle-detection': runCycleDetection,
     'bipartite-check': runBipartiteCheck,
