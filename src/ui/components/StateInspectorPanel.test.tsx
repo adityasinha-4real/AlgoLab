@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { runAStar } from '../../core/algorithms/astar'
 import { runBellmanFord } from '../../core/algorithms/bellmanFord'
+import { runFloydWarshall } from '../../core/algorithms/floydWarshall'
 import { GRAPH_PRESETS } from '../../core/graph/presets'
 import { createFixtureExecutionResult } from '../../test/fixtures'
 import { useExecutionStore } from '../state/executionStore'
@@ -86,5 +87,28 @@ describe('StateInspectorPanel', () => {
     render(<StateInspectorPanel />)
 
     expect(screen.queryByText('Relaxation pass')).toBeNull()
+  })
+
+  it('renders the all-pairs distance matrix for Floyd-Warshall', () => {
+    const graph = GRAPH_PRESETS['simple-path'].build()
+    useGraphStore.getState().setGraph(graph)
+    useExecutionStore.getState().load(runFloydWarshall(graph))
+    useExecutionStore.getState().jumpToEnd()
+
+    render(<StateInspectorPanel />)
+
+    const table = screen.getByRole('table', {
+      name: 'All-pairs distance matrix',
+    })
+    expect(table).toBeInTheDocument()
+    expect(screen.getAllByRole('row')).toHaveLength(graph.nodes.length + 1)
+  })
+
+  it('omits the distance matrix for other algorithms', () => {
+    useExecutionStore.getState().load(createFixtureExecutionResult())
+
+    render(<StateInspectorPanel />)
+
+    expect(screen.queryByText('Distance matrix')).toBeNull()
   })
 })

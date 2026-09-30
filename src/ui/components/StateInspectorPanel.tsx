@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { getAlgorithmMetadata } from '../../core/algorithms/metadata'
+import type { AlgorithmState } from '../../core/engine/types'
 import { useGraphStore } from '../state/graphStore'
 import { getCurrentStep, useExecutionStore } from '../state/executionStore'
 
@@ -86,6 +87,14 @@ export function StateInspectorPanel() {
           : '—'}
       </Section>
 
+      {state.distanceMatrix && (
+        <DistanceMatrix
+          matrix={state.distanceMatrix}
+          labels={nodeLabelById}
+          currentNodeId={state.currentNodeId}
+        />
+      )}
+
       {Object.keys(state.heuristics).length > 0 && (
         <Section title="Heuristic (h) / f = g + h">
           {Object.keys(state.heuristics)
@@ -113,6 +122,72 @@ export function StateInspectorPanel() {
           ? state.path.map((id) => nodeLabelById[id] ?? id).join(' → ')
           : '—'}
       </Section>
+    </div>
+  )
+}
+
+function DistanceMatrix({
+  matrix,
+  labels,
+  currentNodeId,
+}: {
+  matrix: NonNullable<AlgorithmState['distanceMatrix']>
+  labels: Record<string, string>
+  currentNodeId: string | null
+}) {
+  const { nodeIds, values, focus } = matrix
+  const name = (id: string) => labels[id] ?? id
+  return (
+    <div>
+      <p className="text-xs font-medium uppercase tracking-wide text-text-muted">
+        Distance matrix
+      </p>
+      <div className="mt-1 overflow-auto rounded border border-border">
+        <table
+          aria-label="All-pairs distance matrix"
+          className="w-full border-collapse text-center text-xs text-text-primary"
+        >
+          <thead>
+            <tr>
+              <th scope="col" className="px-1.5 py-1 text-text-muted" />
+              {nodeIds.map((id) => (
+                <th
+                  key={id}
+                  scope="col"
+                  className={`px-1.5 py-1 font-medium ${id === currentNodeId ? 'text-accent' : 'text-text-muted'}`}
+                >
+                  {name(id)}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {nodeIds.map((rowId, i) => (
+              <tr key={rowId}>
+                <th
+                  scope="row"
+                  className={`px-1.5 py-1 font-medium ${rowId === currentNodeId ? 'text-accent' : 'text-text-muted'}`}
+                >
+                  {name(rowId)}
+                </th>
+                {nodeIds.map((colId, j) => {
+                  const isFocus = focus?.[0] === i && focus?.[1] === j
+                  const onPivot =
+                    rowId === currentNodeId || colId === currentNodeId
+                  return (
+                    <td
+                      key={colId}
+                      className={`px-1.5 py-1 tabular-nums ${isFocus ? 'bg-accent/30 font-semibold' : onPivot ? 'bg-accent/10' : ''}`}
+                    >
+                      {values[i][j] === Infinity ? '∞' : values[i][j]}
+                    </td>
+                  )
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

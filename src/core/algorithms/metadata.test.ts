@@ -18,6 +18,7 @@ describe('algorithm metadata', () => {
         'prim',
         'kruskal',
         'boruvka',
+        'floyd-warshall',
         'tarjan-scc',
         'kosaraju-scc',
         'bridges-articulation',
@@ -33,10 +34,10 @@ describe('algorithm metadata', () => {
     }
   })
 
-  it('flags Bellman-Ford as the only algorithm supporting negative weights', () => {
+  it('flags only Bellman-Ford and Floyd-Warshall as supporting negative weights', () => {
     const supportsNegative = listAlgorithmMetadata()
       .filter((m) => m.supportsNegativeWeights)
       .map((m) => m.id)
-    expect(supportsNegative).toEqual(['bellman-ford'])
+    expect(supportsNegative.sort()).toEqual(['bellman-ford', 'floyd-warshall'])
   })
 })

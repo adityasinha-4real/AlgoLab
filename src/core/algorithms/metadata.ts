@@ -66,6 +66,19 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     requiresHeuristic: false,
     frontierStructure: 'relaxation-passes',
   },
+  'floyd-warshall': {
+    id: 'floyd-warshall',
+    name: 'Floyd-Warshall',
+    description:
+      'Computes the shortest distance between every pair of nodes by allowing one more intermediate node at a time. Handles negative weights and reports negative cycles; the full distance matrix is shown in the inspector.',
+    timeComplexity: 'O(V³)',
+    spaceComplexity: 'O(V²)',
+    supportsNegativeWeights: true,
+    guaranteesShortestPath: true,
+    requiresHeuristic: false,
+    wholeGraph: true,
+    frontierStructure: 'relaxation-passes',
+  },
   'greedy-best-first': {
     id: 'greedy-best-first',
     name: 'Greedy Best-First Search',

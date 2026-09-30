@@ -64,5 +64,12 @@ function cloneState(state: AlgorithmState): AlgorithmState {
       highlightedEdges: [...state.highlightedEdges],
     }),
     ...(state.nodeGroups && { nodeGroups: { ...state.nodeGroups } }),
+    ...(state.distanceMatrix && {
+      distanceMatrix: {
+        nodeIds: [...state.distanceMatrix.nodeIds],
+        values: state.distanceMatrix.values.map((row) => [...row]),
+        focus: state.distanceMatrix.focus && [...state.distanceMatrix.focus],
+      },
+    }),
   }
 }

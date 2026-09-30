@@ -3,6 +3,7 @@ import type { Graph } from '../graph/types'
 import type { AlgorithmId } from '../engine/types'
 import { runAStar } from './astar'
 import { runBellmanFord } from './bellmanFord'
+import { runFloydWarshall } from './floydWarshall'
 import { runBFS } from './bfs'
 import { runDFS } from './dfs'
 import { runDijkstra } from './dijkstra'
@@ -30,6 +31,7 @@ export const ALGORITHM_RUNNERS: Partial<Record<AlgorithmId, AlgorithmRunner>> =
     dijkstra: runDijkstra,
     astar: runAStar,
     'bellman-ford': runBellmanFord,
+    'floyd-warshall': runFloydWarshall,
     'greedy-best-first': runGreedyBestFirst,
     'bidirectional-bfs': runBidirectionalBFS,
     'zero-one-bfs': runZeroOneBFS,

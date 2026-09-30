@@ -13,6 +13,7 @@ export type AlgorithmId =
   | 'prim'
   | 'kruskal'
   | 'boruvka'
+  | 'floyd-warshall'
   | 'tarjan-scc'
   | 'kosaraju-scc'
   | 'bridges-articulation'
@@ -63,6 +64,12 @@ export interface AlgorithmState {
   highlightedEdges?: string[]
   /** Group index per node id (SCC, bipartite side, articulation flag); rendered as a per-group color. */
   nodeGroups?: Record<NodeId, number>
+  /** All-pairs distances (Floyd-Warshall): `values[i][j]` is the best known distance from `nodeIds[i]` to `nodeIds[j]` (Infinity = unreachable); `focus` is the cell just updated. */
+  distanceMatrix?: {
+    nodeIds: NodeId[]
+    values: number[][]
+    focus: [number, number] | null
+  }
 }
 
 export type StepType =
