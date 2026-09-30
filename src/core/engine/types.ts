@@ -12,6 +12,7 @@ export type AlgorithmId =
   | 'topological-sort'
   | 'prim'
   | 'kruskal'
+  | 'boruvka'
   | 'tarjan-scc'
   | 'kosaraju-scc'
   | 'bridges-articulation'

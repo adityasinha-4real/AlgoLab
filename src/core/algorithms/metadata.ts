@@ -141,6 +141,19 @@ export const ALGORITHM_METADATA: Record<AlgorithmId, AlgorithmMetadata> = {
     wholeGraph: true,
     frontierStructure: 'priority-queue',
   },
+  boruvka: {
+    id: 'boruvka',
+    name: "Borůvka's MST",
+    description:
+      'Builds a minimum spanning tree in rounds: every component picks its cheapest outgoing edge, then all picks are added and their components merge. Needs an undirected graph; negative weights are fine.',
+    timeComplexity: 'O(E log V)',
+    spaceComplexity: 'O(V + E)',
+    supportsNegativeWeights: false,
+    guaranteesShortestPath: false,
+    requiresHeuristic: false,
+    wholeGraph: true,
+    frontierStructure: 'priority-queue',
+  },
   'tarjan-scc': {
     id: 'tarjan-scc',
     name: "Tarjan's SCC",

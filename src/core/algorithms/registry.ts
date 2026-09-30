@@ -12,6 +12,7 @@ import { runBridgesArticulation } from './bridgesArticulation'
 import { runTarjanScc } from './tarjanScc'
 import { runKosarajuScc } from './kosarajuScc'
 import { runKruskal } from './kruskal'
+import { runBoruvka } from './boruvka'
 import { runPrim } from './prim'
 import { runTopologicalSort } from './topologicalSort'
 import { runZeroOneBFS } from './zeroOneBfs'
@@ -35,6 +36,7 @@ export const ALGORITHM_RUNNERS: Partial<Record<AlgorithmId, AlgorithmRunner>> =
     'topological-sort': runTopologicalSort,
     prim: runPrim,
     kruskal: runKruskal,
+    boruvka: runBoruvka,
     'tarjan-scc': runTarjanScc,
     'kosaraju-scc': runKosarajuScc,
     'bridges-articulation': runBridgesArticulation,

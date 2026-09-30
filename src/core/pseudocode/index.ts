@@ -10,6 +10,7 @@ import { BRIDGES_ARTICULATION_PSEUDOCODE } from './bridgesArticulation'
 import { TARJAN_SCC_PSEUDOCODE } from './tarjanScc'
 import { KOSARAJU_SCC_PSEUDOCODE } from './kosarajuScc'
 import { KRUSKAL_PSEUDOCODE } from './kruskal'
+import { BORUVKA_PSEUDOCODE } from './boruvka'
 import { PRIM_PSEUDOCODE } from './prim'
 import { TOPOLOGICAL_SORT_PSEUDOCODE } from './topologicalSort'
 import { ZERO_ONE_BFS_PSEUDOCODE } from './zeroOneBfs'
@@ -28,6 +29,7 @@ export { BRIDGES_ARTICULATION_PSEUDOCODE } from './bridgesArticulation'
 export { TARJAN_SCC_PSEUDOCODE } from './tarjanScc'
 export { KOSARAJU_SCC_PSEUDOCODE } from './kosarajuScc'
 export { KRUSKAL_PSEUDOCODE } from './kruskal'
+export { BORUVKA_PSEUDOCODE } from './boruvka'
 export { PRIM_PSEUDOCODE } from './prim'
 export { TOPOLOGICAL_SORT_PSEUDOCODE } from './topologicalSort'
 export { ZERO_ONE_BFS_PSEUDOCODE } from './zeroOneBfs'
@@ -48,6 +50,7 @@ export const PSEUDOCODE_BY_ALGORITHM: Partial<
   'tarjan-scc': TARJAN_SCC_PSEUDOCODE,
   'kosaraju-scc': KOSARAJU_SCC_PSEUDOCODE,
   kruskal: KRUSKAL_PSEUDOCODE,
+  boruvka: BORUVKA_PSEUDOCODE,
   prim: PRIM_PSEUDOCODE,
   'topological-sort': TOPOLOGICAL_SORT_PSEUDOCODE,
   'zero-one-bfs': ZERO_ONE_BFS_PSEUDOCODE,
